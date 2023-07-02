@@ -93,11 +93,14 @@ def geraCategoriaIMC(dtSet2):
 
 # Duração de sono por idade - Gráfico de linha
 def geraDuracaoSonoPorIdade(dtSet):
-    
-    #Gera um conjunto de idade por década
-    dtSet['Age_bin'] = pd.cut(dtSet['Age'],[0, 30, 40, 50,60], labels=False)
-    
+    dtSet['Age_bin'] = pd.cut(dtSet['Age'], [0, 30, 40, 50, 60], labels=False)
+    plt.figure(figsize=(8, 6))
     dtSet.groupby('Age_bin')['Sleep Duration'].mean().plot.line()
+    plt.xlabel('Idade')
+    plt.ylabel('Média da duração de sono')
+    plt.title('Média de Duração de Sono por Idade')
+    plt.grid(True)
+    plt.show()
 
 # Relação entre trabalho e qualidade do sono
 def geraTrabVSQualSono(dtSet):
